@@ -17,13 +17,13 @@ Build camera and thermal camera with raspberry 4
 1. Add pictures folder to MMTM
 2. Add videos folder to MMTM
 3. Install MP4Box in order to convert h264 file to mp4
-    3.1 ```sudo apt-get install gpac```
+    - ```sudo apt-get install gpac```
 4. [Setting Thermal Camera](https://makersportal.com/blog/2020/6/8/high-resolution-thermal-camera-with-raspberry-pi-and-mlx90640)
-    4.1 ```sudo apt-get install -y python-smbus```
-    4.2 ```sudo apt-get install -y i2c-tools```
-    4.3 ```sudo nano /boot/config.txt```
-        3.3.1 find ```dtparam=i2c_arm=on``` and modify it to ```dtparam=i2c_arm=on,i2c_arm_baudrate=400000```
-    4.4 ```sudo reboot```
+    - ```sudo apt-get install -y python-smbus```
+    - ```sudo apt-get install -y i2c-tools```
+    - ```sudo nano /boot/config.txt```
+        - find ```dtparam=i2c_arm=on``` and modify it to ```dtparam=i2c_arm=on,i2c_arm_baudrate=400000```
+    - ```sudo reboot```
 5. Modify python package pithermalcam/pi_therm_cam.py save_image function
     - add ```+ dt.datetime.now().strftime("%f")[:-5]``` below ```+ dt.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")```
     - comment out pithermalcam/pi_therm_cam.py (203 - 216 line)
