@@ -1,6 +1,8 @@
 __pycache__
-videos
-pictures
 .vscode
-*.png
 *.log
+
+*.mp4
+*.avi
+*.png
+*.jpg
