@@ -5,11 +5,11 @@ import sys
 import configparser
 
 
-sys.path.append("../module")
+sys.path.append("./module")
 import file
 
 config = configparser.ConfigParser()
-config.read_file(open("../configs/config.ini"))
+config.read_file(open("./configs/config.ini"))
 default_video_recording_time = int(config["LOCAL_SETTING"]["VideoRecordingTime"])
 
 

@@ -6,7 +6,7 @@ import glob
 import cv2
 
 config = configparser.ConfigParser()
-config.read_file(open("../configs/config.ini"))
+config.read_file(open("./configs/config.ini"))
 str_of_timezone = config["LOCAL_SETTING"]["Timezone"]
 video_file_path = config["LOCAL_SETTING"]["VideoFilePath"]
 picture_file_path = config["LOCAL_SETTING"]["PictureFilePath"]
