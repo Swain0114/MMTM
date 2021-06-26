@@ -48,7 +48,7 @@ def convert_jpg_to_avi():
     out = cv2.VideoWriter(
         "{}temp.avi".format(video_file_path),
         cv2.VideoWriter_fourcc(*"DIVX"),
-        15,
+        4,
         size,
     )
 
