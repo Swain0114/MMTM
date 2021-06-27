@@ -53,7 +53,9 @@ def input_time_interval_to_record(time_interval_in_sec):
         h264_file_path = file.generate_video_file_path_with_datetime(
             "h264", "pi_cam", True
         )
-        mp4_file_path = file.generate_video_file_path_with_datetime("mp4", "pi_cam", True)
+        mp4_file_path = file.generate_video_file_path_with_datetime(
+            "mp4", "pi_cam", True
+        )
 
         camera.start_preview()
         camera.start_recording(h264_file_path)
@@ -75,8 +77,10 @@ def input_time_interval_to_record(time_interval_in_sec):
 
 def main(time_interval_in_sec=None):
     if time_interval_in_sec:
+        print("start time interval recording")
         input_time_interval_to_record(time_interval_in_sec)
     else:
+        print("start click button recording")
         click_button_to_record()
 
 
