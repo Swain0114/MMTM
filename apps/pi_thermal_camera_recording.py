@@ -25,7 +25,9 @@ def click_button_to_record():
         button.wait_for_press()
         led.on()
 
-        mp4_file_path = file.generate_video_file_path_with_datetime("mp4")
+        mp4_file_path = file.generate_video_file_path_with_datetime(
+            "mp4", "pi_thermal", False
+        )
 
         while True:
             thermal_cam.display_next_frame_onscreen()
@@ -47,10 +49,10 @@ def input_time_interval_to_record(time_interval_in_sec):
         button.wait_for_press()
         led.on()
 
-        mp4_file_path = file.generate_video_file_path_with_datetime("mp4")
+        mp4_file_path = file.generate_video_file_path_with_datetime("mp4", "pi_thermal", True)
 
         start_time = datetime.now()
-        print('start time {}'.format(start_time))
+        print("start time {}".format(start_time))
         time_diff_in_sec = 0  # init
 
         while time_diff_in_sec < time_interval_in_sec:

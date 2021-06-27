@@ -15,11 +15,24 @@ avi_temp_video_file_path = config["LOCAL_SETTING"]["AviTempVideoFilePath"]
 print("time zone setting is {}".format(str_of_timezone))
 
 
-def generate_video_file_path_with_datetime(file_type):
+def generate_video_file_path_with_datetime(file_type, camera_type, is_time_interval):
     file_name = datetime.now(pytz.timezone(str_of_timezone)).strftime("%Y%m%d_%H%M%S")
-    file_path = "{}{}_{}.{}".format(
-        video_file_path, "video_button", file_name, file_type
-    )
+    if camera_type == "pi_cam":
+        if is_time_interval:
+            file_path = "{}video_Ns_{}.{}".format(video_file_path, file_name, file_type)
+        else:
+            file_path = "{}video_button_{}.{}".format(
+                video_file_path, file_name, file_type
+            )
+    elif camera_type == "pi_thermal":
+        if is_time_interval:
+            file_path = "{}video_thermal_Ns_{}.{}".format(
+                video_file_path, file_name, file_type
+            )
+        else:
+            file_path = "{}video_thermal_button_{}.{}".format(
+                video_file_path, file_name, file_type
+            )
 
     return file_path
 
@@ -74,3 +87,8 @@ def convert_avi_to_mp4(mp4_file_name):
         # print("jpg file deleted!")
 
     print("all jpg files deleted")
+
+    delete_avi_command = "rm ./videos/temp.avi"
+    call([delete_avi_command], shell=True)
+
+    print("temp.avi files deleted")
