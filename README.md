@@ -24,9 +24,10 @@ Build camera and thermal camera with raspberry 4
     - ```sudo nano /boot/config.txt```
         - find ```dtparam=i2c_arm=on``` and modify it to ```dtparam=i2c_arm=on,i2c_arm_baudrate=400000```
     - ```sudo reboot```
-5. Modify python package pithermalcam/pi_therm_cam.py save_image function
+5. Modify python package pithermalcam/pi_therm_cam.py save_image function, in order to save more image in the time interval, and remove watermark from image
     - add ```+ dt.datetime.now().strftime("%f")[:-5]``` below ```+ dt.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")```
     - comment out pithermalcam/pi_therm_cam.py (203 - 216 line)
+6. [Add ```export DISPLAY=:0.0``` to ~/.bashrc](https://github.com/opencv/opencv/issues/18461)
 
 
 # Run Script
@@ -38,5 +39,11 @@ Build camera and thermal camera with raspberry 4
     - click button to start recording
     - wait {seconds} and it would stop recording automatically
 
-## Use Pi Camera to Record
-python3 apps/pi_thermal_camera_recording.py
+## Use Pi Thermal to Record
+- python3 apps/pi_thermal_camera_recording.py
+    - click button to start recording
+    - click button to stop recording
+- python3 apps/pi_thermal_camera_recording.py {seconds}
+    - click button to start recording
+    - wait {seconds} and it would stop recording automatically
+
