@@ -11,6 +11,22 @@ Build camera and thermal camera with raspberry 4
 - [Resistor(220) x1](https://blog.jmaker.com.tw/arduino-tutorials-3/)
 - Buzzer x1
 ## Assemble the Hardware
+![Imgur](https://i.imgur.com/yoG1ex6.png)
+- Click to Record Button
+    - OUT: GPIO 26 (No.37)
+    - VCC: 5V power (No.2)
+    - GND: Ground (No.39)
+- Blue LED
+    - 5V power (No.4)
+    - Ground (No.6)
+    - GPIO 17 (No.11)
+- Pi Camera
+    - ![Camera Module Port](https://i.imgur.com/Ey6cOm5.png)
+- Pithermal Camera
+    - GND: Ground (No.25)
+    - 3.3V: 3V3 power (No.1)
+    - SDA: GPIO 3 (No.5)
+    - SCL: GPIO 2 (No.3)
 
 
 # Software Settings
