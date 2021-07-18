@@ -11,6 +11,7 @@ import configparser
 config = configparser.ConfigParser()
 config.read_file(open("./configs/config.ini"))
 picture_file_path = config["LOCAL_SETTING"]["PictureFilePath"]
+video_file_path = config["LOCAL_SETTING"]["VideoFilePath"]
 sys.path.append("./module")
 import file
 
@@ -22,11 +23,11 @@ thermal_cam = pithermalcam(output_folder=picture_file_path)
 
 
 def click_button_to_record():
+    print("start recording...")
     while True:
         button.wait_for_press()
         camera.resolution = (640, 480)
         led.on()
-        print("start recording...")
 
         pi_camera_h264_file_path = file.generate_video_file_path_with_datetime(
             "h264", "pi_cam", False
@@ -39,12 +40,21 @@ def click_button_to_record():
         )
 
         camera.start_preview()
-        print("pi camera start recording...")
         camera.start_recording(pi_camera_h264_file_path)
+        out = cv2.VideoWriter(
+            "{}temp.avi".format(video_file_path),
+            cv2.VideoWriter_fourcc(*"DIVX"),
+            4,
+            (800, 600),
+        )
         while True:
-            print("pi thermal camera start recording...")
             thermal_cam.display_next_frame_onscreen()
-            thermal_cam.save_image()
+            thermal_file_name = thermal_cam.save_image()
+            img = cv2.imread(thermal_file_name)
+            out.write(img)
+            delete_jpg_command = "rm ./pictures/*.jpg"
+            call([delete_jpg_command], shell=True)
+
             if button.is_pressed:
                 break
 
@@ -56,7 +66,6 @@ def click_button_to_record():
         print("pi camera end recording...")
 
         cv2.destroyAllWindows()
-        file.convert_jpg_to_avi()
         file.convert_avi_to_mp4(pi_thermal_mp4_file_path)
         print("pi thermal camera end recording...")
         led.off()
@@ -64,6 +73,7 @@ def click_button_to_record():
         sleep(0.5)
         print("Done Successfully")
         button.wait_for_press()
+
 
 if __name__ == "__main__":
     click_button_to_record()
