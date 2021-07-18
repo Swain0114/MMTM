@@ -65,8 +65,5 @@ def click_button_to_record():
         print("Done Successfully")
         button.wait_for_press()
 
-    return
-
-
 if __name__ == "__main__":
     click_button_to_record()
