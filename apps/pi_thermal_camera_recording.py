@@ -37,6 +37,7 @@ def click_button_to_record():
 
         file.convert_jpg_to_avi()
         file.convert_avi_to_mp4(mp4_file_path)
+        cv2.destroyAllWindows()
         led.off()
 
         sleep(0.5)
@@ -63,6 +64,7 @@ def input_time_interval_to_record(time_interval_in_sec):
 
         file.convert_jpg_to_avi()
         file.convert_avi_to_mp4(mp4_file_path)
+        cv2.destroyAllWindows()
         led.off()
 
         sleep(0.5)
