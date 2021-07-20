@@ -49,6 +49,7 @@ Build camera and thermal camera with raspberry 4
         - find ```# For a brief period after saving, display saved notification```
     - find ```_process_raw_image``` and add ```.astype(np.unit8)``` to two ndimage.zoom functions
     - modify ```cv2.applyColorMap(self._raw_image, cmapy.cmap(self._colormap_list[self._colormap_index]))``` to ```cv2.applyColorMap(self._image, cmapy.cmap(self._colormap_list[self._colormap_index]))``` and add ```self._image = self._raw_image.astype(np.uint8)``` above of it.
+    - find ```save_image``` function and add ```return fname```
 6. Add ```export DISPLAY=:0.0``` to ~/.bashrc [Ref. link](https://github.com/opencv/opencv/issues/18461)
 
 
