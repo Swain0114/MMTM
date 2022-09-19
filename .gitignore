@@ -6,3 +6,8 @@ __pycache__
 *.avi
 *.png
 *.jpg
+
+gcp_credential.json
+*pk.json
+secret.json
+data
