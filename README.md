@@ -14,7 +14,7 @@ Build camera and thermal camera with raspberry 4
 ![Imgur](https://i.imgur.com/yoG1ex6.png)
 - Click to Record Button
     - OUT: GPIO 26 (No.37)
-    - VCC: 5V power (No.2)
+    - VCC: 3v3 power (No.17)
     - GND: Ground (No.39)
 - Blue LED
     - 5V power (No.4)
@@ -27,6 +27,9 @@ Build camera and thermal camera with raspberry 4
     - 3.3V: 3V3 power (No.1)
     - SDA: GPIO 3 (No.5)
     - SCL: GPIO 2 (No.3)
+- Buzzer
+    - Ground (No.9)
+    - GPIO 22 (No.27)
 
 
 # Software Settings
@@ -43,7 +46,11 @@ Build camera and thermal camera with raspberry 4
 5. Modify python package pithermalcam/pi_therm_cam.py save_image function, in order to save more image in the time interval, and remove watermark from image
     - add ```+ dt.datetime.now().strftime("%f")[:-5]``` below ```+ dt.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")```
     - comment out pithermalcam/pi_therm_cam.py (203 - 216 line)
-6. [Add ```export DISPLAY=:0.0``` to ~/.bashrc](https://github.com/opencv/opencv/issues/18461)
+        - find ```# For a brief period after saving, display saved notification```
+    - find ```_process_raw_image``` and add ```.astype(np.unit8)``` to two ndimage.zoom functions
+    - modify ```cv2.applyColorMap(self._raw_image, cmapy.cmap(self._colormap_list[self._colormap_index]))``` to ```cv2.applyColorMap(self._image, cmapy.cmap(self._colormap_list[self._colormap_index]))``` and add ```self._image = self._raw_image.astype(np.uint8)``` above of it.
+    - find ```save_image``` function and add ```return fname```
+6. Add ```export DISPLAY=:0.0``` to ~/.bashrc [Ref. link](https://github.com/opencv/opencv/issues/18461)
 
 
 # Run Script
@@ -62,4 +69,9 @@ Build camera and thermal camera with raspberry 4
 - python3 apps/pi_thermal_camera_recording.py {seconds}
     - click button to start recording
     - wait {seconds} and it would stop recording automatically
+
+## Use Pi Camera and Thermal to Record
+- python3 apps/pi_recording.py
+    - click button to start recording
+    - click button to stop recording
 
