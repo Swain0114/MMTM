@@ -63,13 +63,14 @@ mypy-extensions==0.4.3
 numpy==1.20.3
 oauthlib==2.1.0
 olefile==0.46
-opencv-python==4.5.1.48
+opencv-python==4.5.3.56
 pantilthat==0.0.7
 parso==0.3.1
 pathspec==0.8.1
 pexpect==4.6.0
 pgzero==1.2
 phatbeat==0.1.1
+protobuf==3.18.0
 pianohat==0.1.0
 picamera==1.13
 piglow==1.2.5
@@ -120,6 +121,7 @@ soupsieve==1.8
 spidev==3.5
 ssh-import-id==5.7
 sysv-ipc==1.1.0
+tflite-support==0.4.2
 thonny==3.3.6
 toml==0.10.2
 touchphat==0.0.1

@@ -11,3 +11,7 @@ gcp_credential.json
 *pk.json
 secret.json
 data
+
+# model
+model
+model.tflite
