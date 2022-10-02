@@ -6,7 +6,7 @@ from tflite_support.task import vision
 import utils
 
 base_options = core.BaseOptions(
-    file_name='./efficientdet_lite0.tflite', use_coral=False, num_threads=4)
+    file_name='../model/model.tflite', use_coral=False, num_threads=4)
 detection_options = processor.DetectionOptions(
     max_results=10, score_threshold=0.15, category_name_allowlist=['cat'])
 options = vision.ObjectDetectorOptions(

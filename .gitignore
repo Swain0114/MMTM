@@ -13,5 +13,5 @@ secret.json
 data
 
 # model
-model
 model.tflite
+openimages_v4_ssd_mobilenet_v2_1.tar.gz
